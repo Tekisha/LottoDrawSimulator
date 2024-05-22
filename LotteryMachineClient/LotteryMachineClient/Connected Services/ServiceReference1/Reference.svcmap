@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="1fcde184-e4ef-427d-ac05-b70932eea1b5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/LotteryMachineService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LotteryMachineService.xsd" MetadataType="Schema" ID="997b0d4c-ddce-4444-851f-e1ce0944a66d" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?xsd=xsd1" />
+    <MetadataFile FileName="LotteryMachineService.wsdl" MetadataType="Wsdl" ID="b00cc6bc-91a8-4e9b-8aa2-8db327139eff" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?wsdl" />
+    <MetadataFile FileName="LotteryMachineService1.xsd" MetadataType="Schema" ID="c3a47f22-8e36-456d-aafc-5ce71265bc82" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?xsd=xsd0" />
+    <MetadataFile FileName="LotteryMachineService.disco" MetadataType="Disco" ID="88f728b9-dba5-4e05-91e2-eb62aa1a34dd" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
