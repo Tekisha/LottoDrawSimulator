@@ -10,6 +10,6 @@ namespace LottoDrawSimulator.Contracts
     public interface IPlayerCallback
     {
         [OperationContract(IsOneWay = true)]
-        void NotifyDrawnNumbers(int[] drawnNumbers);
+        void NotifyDrawnNumbers(int[] drawnNumbers, int hitCount, decimal earnings, int rank);
     }
 }

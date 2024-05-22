@@ -26,7 +26,6 @@ namespace LottoDrawSimulator.Services
             players[playerName] = (number1, number2, amount);
             playerEarnings[playerName] = 0;
 
-            // Register the callback
             IPlayerCallback callback = OperationContext.Current.GetCallbackChannel<IPlayerCallback>();
             if (!callbacks.Contains(callback))
             {
@@ -41,10 +40,7 @@ namespace LottoDrawSimulator.Services
             Random random = new Random();
             int[] drawnNumbers = new int[] { random.Next(0, 11), random.Next(0, 11) };
 
-            foreach (var callback in callbacks)
-            {
-                callback.NotifyDrawnNumbers(drawnNumbers);
-            }
+            var playerResults = new List<(string playerName, int hitCount, decimal earnings)>();
 
             foreach (var player in players)
             {
@@ -60,8 +56,25 @@ namespace LottoDrawSimulator.Services
 
                 playerEarnings[player.Key] += earnings;
 
-                Console.WriteLine($"Player {player.Key}: Drawn numbers: {string.Join(", ", drawnNumbers)}");
-                Console.WriteLine($"Hit numbers: {hitCount}, Earnings: {earnings}, Total earnings: {playerEarnings[player.Key]}");
+                playerResults.Add((player.Key, hitCount, earnings));
+            }
+
+            var rankedPlayers = playerEarnings.OrderByDescending(e => e.Value).Select((e, index) => new { e.Key, Rank = index + 1 }).ToDictionary(p => p.Key, p => p.Rank);
+
+            foreach (var callback in callbacks)
+            {
+                foreach (var result in playerResults)
+                {
+                    int rank = rankedPlayers[result.playerName];
+                    callback.NotifyDrawnNumbers(drawnNumbers, result.hitCount, result.earnings, rank);
+                }
+            }
+
+            foreach (var result in playerResults)
+            {
+                int rank = rankedPlayers[result.playerName];
+                Console.WriteLine($"Player {result.playerName}: Drawn numbers: {string.Join(", ", drawnNumbers)}");
+                Console.WriteLine($"Hit numbers: {result.hitCount}, Earnings: {result.earnings}, Total earnings: {playerEarnings[result.playerName]}, Rank: {rank}");
             }
         }
     }
