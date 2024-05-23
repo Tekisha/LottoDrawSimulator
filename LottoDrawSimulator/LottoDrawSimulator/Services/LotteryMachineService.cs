@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LottoDrawSimulator.Services
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class LotteryMachineService : ILotteryMachineService
     {
         private static List<string> registeredPlayers = new List<string>();
@@ -24,16 +25,15 @@ namespace LottoDrawSimulator.Services
             }
         }
 
-
         public void StartDrawing()
         {
-            _timer = new Timer(60000); // 1 minute interval
-            _timer.Elapsed += (sender, e) => PlayerService.DrawNumbers();
+            _timer = new Timer(60000);
+            _timer.Elapsed += DrawNumbers;
             _timer.Start();
             Console.WriteLine("Started drawing numbers every minute.");
         }
 
-        private void DrawNumbers(object state)
+        private void DrawNumbers(object sender, ElapsedEventArgs e)
         {
             int[] drawnNumbers = new int[2];
             byte[] randomNumber = new byte[1];
@@ -44,7 +44,7 @@ namespace LottoDrawSimulator.Services
                 drawnNumbers[i] = randomNumber[0] % 11;
             }
 
-            PlayerService.DrawNumbers();
+            PlayerService.NotifyPlayers(drawnNumbers);
         }
     }
 }
