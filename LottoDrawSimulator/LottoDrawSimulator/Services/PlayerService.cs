@@ -18,11 +18,14 @@ namespace LottoDrawSimulator.Services
         public string InitPlayer(int number1, int number2, decimal amount)
         {
             if (number1 < 0 || number1 > 10 || number2 < 0 || number2 > 10)
-                return "Numbers must be in the range of 0 to 10.";
+                return "Invalid numbers. Numbers must be in the range of 0 to 10.";
             if (amount <= 0)
-                return "Amount must be greater than zero.";
+                return "Invalid amount. Amount must be greater than zero.";
 
-            string playerName = Guid.NewGuid().ToString();
+            string playerName = OperationContext.Current.SessionId;
+            if (players.ContainsKey(playerName))
+                return "You have already registered.";
+
             players[playerName] = (number1, number2, amount);
             playerEarnings[playerName] = 0;
 
@@ -35,18 +38,25 @@ namespace LottoDrawSimulator.Services
             return playerName;
         }
 
-        public static void DrawNumbers()
+        public static void NotifyPlayers(int[] drawnNumbers)
         {
-            Random random = new Random();
-            int[] drawnNumbers = new int[] { random.Next(0, 11), random.Next(0, 11) };
-
             var playerResults = new List<(string playerName, int hitCount, decimal earnings)>();
 
             foreach (var player in players)
             {
                 int hitCount = 0;
-                if (drawnNumbers.Contains(player.Value.Item1)) hitCount++;
-                if (drawnNumbers.Contains(player.Value.Item2)) hitCount++;
+                var guessedNumbers = new List<int> { player.Value.Item1, player.Value.Item2 };
+
+                var tempDrawnNumbers = new List<int>(drawnNumbers);
+
+                foreach (var number in guessedNumbers)
+                {
+                    if (tempDrawnNumbers.Contains(number))
+                    {
+                        hitCount++;
+                        tempDrawnNumbers.Remove(number);
+                    }
+                }
 
                 decimal earnings = 0;
                 if (hitCount == 1)
@@ -61,11 +71,11 @@ namespace LottoDrawSimulator.Services
 
             var rankedPlayers = playerEarnings.OrderByDescending(e => e.Value).Select((e, index) => new { e.Key, Rank = index + 1 }).ToDictionary(p => p.Key, p => p.Rank);
 
-            foreach (var callback in callbacks)
+            foreach (var result in playerResults)
             {
-                foreach (var result in playerResults)
+                int rank = rankedPlayers[result.playerName];
+                foreach (var callback in callbacks)
                 {
-                    int rank = rankedPlayers[result.playerName];
                     callback.NotifyDrawnNumbers(drawnNumbers, result.hitCount, result.earnings, rank);
                 }
             }
