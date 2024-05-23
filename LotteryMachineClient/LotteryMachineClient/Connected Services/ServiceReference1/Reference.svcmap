@@ -22,10 +22,11 @@
     <MetadataSource Address="http://localhost:8080/LotteryMachineService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LotteryMachineService.xsd" MetadataType="Schema" ID="997b0d4c-ddce-4444-851f-e1ce0944a66d" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?xsd=xsd1" />
+    <MetadataFile FileName="LotteryMachineService.xsd" MetadataType="Schema" ID="d32e1e29-08ab-4688-af82-5a532f46a687" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?xsd=xsd1" />
     <MetadataFile FileName="LotteryMachineService.wsdl" MetadataType="Wsdl" ID="b00cc6bc-91a8-4e9b-8aa2-8db327139eff" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?wsdl" />
     <MetadataFile FileName="LotteryMachineService1.xsd" MetadataType="Schema" ID="c3a47f22-8e36-456d-aafc-5ce71265bc82" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?xsd=xsd0" />
     <MetadataFile FileName="LotteryMachineService.disco" MetadataType="Disco" ID="88f728b9-dba5-4e05-91e2-eb62aa1a34dd" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?disco" />
+    <MetadataFile FileName="LotteryMachineService2.xsd" MetadataType="Schema" ID="c2253f0f-72bf-4f0f-999e-a7d79c402afe" SourceId="1" SourceUrl="http://localhost:8080/LotteryMachineService?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

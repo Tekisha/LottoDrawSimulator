@@ -56,9 +56,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Connected Services\ServiceReference1\LotteryMachineService.wsdl" />
-    <None Include="Connected Services\ServiceReference1\LotteryMachineService.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\ServiceReference1\LotteryMachineService1.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -96,44 +96,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_ILotteryMachineService_RegisterPlayer_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_ILotteryMachineService_RegisterPlayer_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_ILotteryMachineService_StartDrawing_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -172,48 +134,76 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_ILotteryMachineService_ReceiveDrawnNumbers_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_ILotteryMachineService_ReceiveDrawnNumbers_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8080/LotteryMachineService?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8080/LotteryMachineService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/LotteryMachineService?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ILotteryMachineService_RegisterPlayer_InputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterPlayer" />
-  </wsdl:message>
-  <wsdl:message name="ILotteryMachineService_RegisterPlayer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterPlayerResponse" />
-  </wsdl:message>
   <wsdl:message name="ILotteryMachineService_StartDrawing_InputMessage">
     <wsdl:part name="parameters" element="tns:StartDrawing" />
   </wsdl:message>
   <wsdl:message name="ILotteryMachineService_StartDrawing_OutputMessage">
     <wsdl:part name="parameters" element="tns:StartDrawingResponse" />
   </wsdl:message>
+  <wsdl:message name="ILotteryMachineService_ReceiveDrawnNumbers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveDrawnNumbers" />
+  </wsdl:message>
+  <wsdl:message name="ILotteryMachineService_ReceiveDrawnNumbers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveDrawnNumbersResponse" />
+  </wsdl:message>
   <wsdl:portType name="ILotteryMachineService">
-    <wsdl:operation name="RegisterPlayer">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILotteryMachineService/RegisterPlayer" message="tns:ILotteryMachineService_RegisterPlayer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILotteryMachineService/RegisterPlayerResponse" message="tns:ILotteryMachineService_RegisterPlayer_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="StartDrawing">
       <wsdl:input wsaw:Action="http://tempuri.org/ILotteryMachineService/StartDrawing" message="tns:ILotteryMachineService_StartDrawing_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILotteryMachineService/StartDrawingResponse" message="tns:ILotteryMachineService_StartDrawing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveDrawnNumbers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbers" message="tns:ILotteryMachineService_ReceiveDrawnNumbers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbersResponse" message="tns:ILotteryMachineService_ReceiveDrawnNumbers_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_ILotteryMachineService" type="tns:ILotteryMachineService">
     <wsp:PolicyReference URI="#WSHttpBinding_ILotteryMachineService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="RegisterPlayer">
-      <soap12:operation soapAction="http://tempuri.org/ILotteryMachineService/RegisterPlayer" style="document" />
-      <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_ILotteryMachineService_RegisterPlayer_Input_policy" />
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_ILotteryMachineService_RegisterPlayer_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="StartDrawing">
       <soap12:operation soapAction="http://tempuri.org/ILotteryMachineService/StartDrawing" style="document" />
       <wsdl:input>
@@ -222,6 +212,17 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSHttpBinding_ILotteryMachineService_StartDrawing_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveDrawnNumbers">
+      <soap12:operation soapAction="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbers" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_ILotteryMachineService_ReceiveDrawnNumbers_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_ILotteryMachineService_ReceiveDrawnNumbers_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

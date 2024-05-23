@@ -13,7 +13,7 @@ namespace LottoDrawSimulator.Services
     {
         private static Dictionary<string, (int, int, decimal)> players = new Dictionary<string, (int, int, decimal)>();
         private static Dictionary<string, decimal> playerEarnings = new Dictionary<string, decimal>();
-        private static List<IPlayerCallback> callbacks = new List<IPlayerCallback>();
+        private static Dictionary<string, IPlayerCallback> playerCallbacks = new Dictionary<string, IPlayerCallback>();
 
         public string InitPlayer(int number1, int number2, decimal amount)
         {
@@ -30,9 +30,9 @@ namespace LottoDrawSimulator.Services
             playerEarnings[playerName] = 0;
 
             IPlayerCallback callback = OperationContext.Current.GetCallbackChannel<IPlayerCallback>();
-            if (!callbacks.Contains(callback))
+            if (!playerCallbacks.ContainsKey(playerName))
             {
-                callbacks.Add(callback);
+                playerCallbacks[playerName] = callback;
             }
 
             return playerName;
@@ -74,8 +74,9 @@ namespace LottoDrawSimulator.Services
             foreach (var result in playerResults)
             {
                 int rank = rankedPlayers[result.playerName];
-                foreach (var callback in callbacks)
+                if (playerCallbacks.ContainsKey(result.playerName))
                 {
+                    var callback = playerCallbacks[result.playerName];
                     callback.NotifyDrawnNumbers(drawnNumbers, result.hitCount, result.earnings, rank);
                 }
             }

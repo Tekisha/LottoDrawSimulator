@@ -31,7 +31,7 @@ namespace PlayerClient
             Console.WriteLine($"Player registered with name: {playerName}");
 
             Console.WriteLine("Waiting for drawn numbers...");
-            Console.ReadLine(); // Keep the client running
+            Console.ReadLine();
         }
     }
 }

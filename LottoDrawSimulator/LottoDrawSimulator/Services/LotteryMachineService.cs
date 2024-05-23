@@ -13,29 +13,17 @@ namespace LottoDrawSimulator.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class LotteryMachineService : ILotteryMachineService
     {
-        private static List<string> registeredPlayers = new List<string>();
         private static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
         private Timer _timer;
 
         public void StartDrawing()
         {
-            _timer = new Timer(60000);
-            _timer.Elapsed += DrawNumbers;
-            _timer.Start();
-            Console.WriteLine("Started drawing numbers every minute.");
+            Console.WriteLine("Lotto Machine Service is ready to receive drawn numbers.");
         }
 
-        private void DrawNumbers(object sender, ElapsedEventArgs e)
+        public void ReceiveDrawnNumbers(int[] drawnNumbers)
         {
-            int[] drawnNumbers = new int[2];
-            byte[] randomNumber = new byte[1];
-
-            for (int i = 0; i < 2; i++)
-            {
-                rng.GetBytes(randomNumber);
-                drawnNumbers[i] = randomNumber[0] % 11;
-            }
-
+            Console.WriteLine($"Received drawn numbers: {string.Join(", ", drawnNumbers)}");
             PlayerService.NotifyPlayers(drawnNumbers);
         }
     }

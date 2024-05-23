@@ -12,5 +12,8 @@ namespace LottoDrawSimulator.Contracts
     {
         [OperationContract]
         void StartDrawing();
+
+        [OperationContract]
+        void ReceiveDrawnNumbers(int[] drawnNumbers);
     }
 }

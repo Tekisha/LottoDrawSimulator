@@ -15,17 +15,17 @@ namespace LotteryMachineClient.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ILotteryMachineService")]
     public interface ILotteryMachineService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/RegisterPlayer", ReplyAction="http://tempuri.org/ILotteryMachineService/RegisterPlayerResponse")]
-        void RegisterPlayer(string playerName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/RegisterPlayer", ReplyAction="http://tempuri.org/ILotteryMachineService/RegisterPlayerResponse")]
-        System.Threading.Tasks.Task RegisterPlayerAsync(string playerName);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/StartDrawing", ReplyAction="http://tempuri.org/ILotteryMachineService/StartDrawingResponse")]
         void StartDrawing();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/StartDrawing", ReplyAction="http://tempuri.org/ILotteryMachineService/StartDrawingResponse")]
         System.Threading.Tasks.Task StartDrawingAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbers", ReplyAction="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbersResponse")]
+        void ReceiveDrawnNumbers(int[] drawnNumbers);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbers", ReplyAction="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbersResponse")]
+        System.Threading.Tasks.Task ReceiveDrawnNumbersAsync(int[] drawnNumbers);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +55,20 @@ namespace LotteryMachineClient.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public void RegisterPlayer(string playerName) {
-            base.Channel.RegisterPlayer(playerName);
-        }
-        
-        public System.Threading.Tasks.Task RegisterPlayerAsync(string playerName) {
-            return base.Channel.RegisterPlayerAsync(playerName);
-        }
-        
         public void StartDrawing() {
             base.Channel.StartDrawing();
         }
         
         public System.Threading.Tasks.Task StartDrawingAsync() {
             return base.Channel.StartDrawingAsync();
+        }
+        
+        public void ReceiveDrawnNumbers(int[] drawnNumbers) {
+            base.Channel.ReceiveDrawnNumbers(drawnNumbers);
+        }
+        
+        public System.Threading.Tasks.Task ReceiveDrawnNumbersAsync(int[] drawnNumbers) {
+            return base.Channel.ReceiveDrawnNumbersAsync(drawnNumbers);
         }
     }
 }
