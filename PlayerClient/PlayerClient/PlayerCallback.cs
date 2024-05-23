@@ -9,9 +9,10 @@ namespace PlayerClient
 {
     public class PlayerCallback : IPlayerServiceCallback
     {
-        public void NotifyDrawnNumbers(int[] drawnNumbers)
+        public void NotifyDrawnNumbers(int[] drawnNumbers, int hitCount, decimal earnings, int rank)
         {
             Console.WriteLine($"Drawn numbers: {string.Join(", ", drawnNumbers)}");
+            Console.WriteLine($"Hit numbers: {hitCount}, Earnings: {earnings}, Rank: {rank}");
         }
     }
 }
