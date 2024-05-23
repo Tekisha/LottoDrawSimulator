@@ -11,9 +11,6 @@ namespace LottoDrawSimulator.Contracts
     public interface ILotteryMachineService
     {
         [OperationContract]
-        void RegisterPlayer(string playerName);
-
-        [OperationContract]
         void StartDrawing();
     }
 }

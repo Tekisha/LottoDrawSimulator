@@ -17,14 +17,6 @@ namespace LottoDrawSimulator.Services
         private static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
         private Timer _timer;
 
-        public void RegisterPlayer(string playerName)
-        {
-            if (!registeredPlayers.Contains(playerName))
-            {
-                registeredPlayers.Add(playerName);
-            }
-        }
-
         public void StartDrawing()
         {
             _timer = new Timer(60000);
