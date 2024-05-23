@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using static PlayerClient.UserInputValidator;
 
 namespace PlayerClient
 {
@@ -16,18 +17,21 @@ namespace PlayerClient
             PlayerServiceClient client = new PlayerServiceClient(instanceContext);
 
             Console.WriteLine("Welcome to the LottoDrawSimulator!");
-            Console.Write("Enter your first number (0-10): ");
-            int number1 = int.Parse(Console.ReadLine());
-            Console.Write("Enter your second number (0-10): ");
-            int number2 = int.Parse(Console.ReadLine());
-            Console.Write("Enter the amount of money you want to bet: ");
-            decimal amount = decimal.Parse(Console.ReadLine());
+
+            int number1 = GetValidNumber("Enter your first number (0-10): ");
+            int number2 = GetValidNumber("Enter your second number (0-10): ");
+            decimal amount = GetValidAmount("Enter the amount of money you want to bet: ");
 
             string playerName = client.InitPlayer(number1, number2, amount);
+            if (string.IsNullOrEmpty(playerName))
+            {
+                Console.WriteLine("Player registration failed. Please try again.");
+                return;
+            }
             Console.WriteLine($"Player registered with name: {playerName}");
 
             Console.WriteLine("Waiting for drawn numbers...");
-            Console.ReadLine();
+            Console.ReadLine(); // Keep the client running
         }
     }
 }
