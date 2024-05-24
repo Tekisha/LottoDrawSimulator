@@ -18,20 +18,31 @@ namespace PlayerClient
 
             Console.WriteLine("Welcome to the LottoDrawSimulator!");
 
-            int number1 = GetValidNumber("Enter your first number (0-10): ");
-            int number2 = GetValidNumber("Enter your second number (0-10): ");
-            decimal amount = GetValidAmount("Enter the amount of money you want to bet: ");
-
-            string playerName = client.InitPlayer(number1, number2, amount);
-            if (string.IsNullOrEmpty(playerName))
+            while (true)
             {
-                Console.WriteLine("Player registration failed. Please try again.");
-                return;
-            }
-            Console.WriteLine($"Player registered with name: {playerName}");
+                int number1 = UserInputValidator.GetValidNumber("Enter your first number (0-10): ");
+                int number2 = UserInputValidator.GetValidNumber("Enter your second number (0-10): ");
+                decimal amount = UserInputValidator.GetValidAmount("Enter the amount of money you want to bet: ");
 
-            Console.WriteLine("Waiting for drawn numbers...");
-            Console.ReadLine();
+                string playerName = client.InitPlayer(number1, number2, amount);
+                if (string.IsNullOrEmpty(playerName))
+                {
+                    Console.WriteLine("Player registration failed. Please try again.");
+                    return;
+                }
+                Console.WriteLine($"Player registered with name: {playerName}");
+
+                Console.WriteLine("Waiting for drawn numbers...");
+                PlayerCallback.NotificationReceived.WaitOne();
+                PlayerCallback.NotificationReceived.Reset();
+
+                Console.WriteLine("Would you like to play again? (y/n)");
+                string playAgain = Console.ReadLine().ToLower();
+                if (playAgain != "y")
+                {
+                    break;
+                }
+            }
         }
     }
 }

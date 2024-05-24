@@ -26,7 +26,7 @@ namespace PlayerClient.ServiceReference1 {
     public interface IPlayerServiceCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IPlayerService/NotifyDrawnNumbers")]
-        void NotifyDrawnNumbers(int[] drawnNumbers, int hitCount, decimal earnings, int rank);
+        void NotifyDrawnNumbers(int[] drawnNumbers, int hitCount, decimal earnings, decimal totalEarnings, int rank);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

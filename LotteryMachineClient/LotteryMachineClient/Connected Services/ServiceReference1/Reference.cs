@@ -15,12 +15,6 @@ namespace LotteryMachineClient.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ILotteryMachineService")]
     public interface ILotteryMachineService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/StartDrawing", ReplyAction="http://tempuri.org/ILotteryMachineService/StartDrawingResponse")]
-        void StartDrawing();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/StartDrawing", ReplyAction="http://tempuri.org/ILotteryMachineService/StartDrawingResponse")]
-        System.Threading.Tasks.Task StartDrawingAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbers", ReplyAction="http://tempuri.org/ILotteryMachineService/ReceiveDrawnNumbersResponse")]
         void ReceiveDrawnNumbers(int[] drawnNumbers);
         
@@ -53,14 +47,6 @@ namespace LotteryMachineClient.ServiceReference1 {
         
         public LotteryMachineServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public void StartDrawing() {
-            base.Channel.StartDrawing();
-        }
-        
-        public System.Threading.Tasks.Task StartDrawingAsync() {
-            return base.Channel.StartDrawingAsync();
         }
         
         public void ReceiveDrawnNumbers(int[] drawnNumbers) {

@@ -13,14 +13,6 @@ namespace LottoDrawSimulator.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class LotteryMachineService : ILotteryMachineService
     {
-        private static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-        private Timer _timer;
-
-        public void StartDrawing()
-        {
-            Console.WriteLine("Lotto Machine Service is ready to receive drawn numbers.");
-        }
-
         public void ReceiveDrawnNumbers(int[] drawnNumbers)
         {
             Console.WriteLine($"Received drawn numbers: {string.Join(", ", drawnNumbers)}");

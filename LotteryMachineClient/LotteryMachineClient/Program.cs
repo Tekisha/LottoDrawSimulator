@@ -19,6 +19,7 @@ namespace LotteryMachineClient
             NumberDrawer numberDrawer = new NumberDrawer(proxy);
 
             Console.WriteLine("Starting the Lottery Machine...");
+            Console.WriteLine("First draw will be in 1 minute.");
 
             // Start drawing numbers every minute
             var timer = new System.Timers.Timer(60000);

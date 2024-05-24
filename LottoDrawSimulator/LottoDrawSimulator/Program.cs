@@ -21,7 +21,7 @@ namespace LottoDrawSimulator
                 {
                     lotteryMachineServiceHost.Open();
                     Console.WriteLine("LotteryMachineService is running...");
-
+                    
                     Console.WriteLine("Services are running. Press [Enter] to exit.");
                     Console.ReadLine();
 
