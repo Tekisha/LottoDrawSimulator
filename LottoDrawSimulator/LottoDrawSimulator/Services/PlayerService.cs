@@ -24,6 +24,9 @@ namespace LottoDrawSimulator.Services
 
             string playerName = OperationContext.Current.SessionId;
 
+            if (players.ContainsKey(playerName))
+                return "You have already placed a ticket. Wait for the next draw.";
+
             IPlayerCallback callback = OperationContext.Current.GetCallbackChannel<IPlayerCallback>();
             playerCallbacks[playerName] = callback;
 
@@ -44,7 +47,7 @@ namespace LottoDrawSimulator.Services
             var rankedPlayers = CalculatePlayerRanks();
 
             NotifyPlayerCallbacks(playerResults, drawnNumbers, rankedPlayers);
-            LogPlayerResults(playerResults, rankedPlayers);
+            LogPlayerResults(playerResults, drawnNumbers, rankedPlayers);
             ClearPlayers();
         }
 
@@ -115,11 +118,12 @@ namespace LottoDrawSimulator.Services
 
         private static void LogPlayerResults(
             List<(string playerName, int hitCount, decimal earnings, decimal totalEarnings)> playerResults,
+            int[] drawnNumbers,
             Dictionary<string, int> rankedPlayers)
         {
             foreach (var result in playerResults)
             {
-                Console.WriteLine($"Player {result.playerName}: Drawn numbers: {string.Join(", ", result.hitCount)}");
+                Console.WriteLine($"Player {result.playerName}: Drawn numbers: {string.Join(", ", drawnNumbers)}");
                 Console.WriteLine($"Hit numbers: {result.hitCount}, Earnings: {result.earnings}, Total earnings: {result.totalEarnings}, Rank: {rankedPlayers[result.playerName]}");
             }
         }

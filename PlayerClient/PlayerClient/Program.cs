@@ -24,17 +24,22 @@ namespace PlayerClient
                 int number2 = UserInputValidator.GetValidNumber("Enter your second number (0-10): ");
                 decimal amount = UserInputValidator.GetValidAmount("Enter the amount of money you want to bet: ");
 
-                string playerName = client.InitPlayer(number1, number2, amount);
-                if (string.IsNullOrEmpty(playerName))
+                string result = client.InitPlayer(number1, number2, amount);
+                if (result == "You have already placed a ticket. Wait for the next draw.")
                 {
-                    Console.WriteLine("Player registration failed. Please try again.");
-                    return;
+                    Console.WriteLine(result);
                 }
-                Console.WriteLine($"Player registered with name: {playerName}");
-
-                Console.WriteLine("Waiting for drawn numbers...");
-                PlayerCallback.NotificationReceived.WaitOne();
-                PlayerCallback.NotificationReceived.Reset();
+                else if (result == "Invalid numbers. Numbers must be in the range of 0 to 10." || result == "Invalid amount. Amount must be greater than zero.")
+                {
+                    Console.WriteLine(result);
+                }
+                else
+                {
+                    Console.WriteLine($"Player registered with name: {result}");
+                    Console.WriteLine("Waiting for drawn numbers...");
+                    PlayerCallback.NotificationReceived.WaitOne();
+                    PlayerCallback.NotificationReceived.Reset();
+                }
 
                 Console.WriteLine("Would you like to play again? (y/n)");
                 string playAgain = Console.ReadLine().ToLower();
